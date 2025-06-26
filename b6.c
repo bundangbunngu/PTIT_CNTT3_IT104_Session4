@@ -20,7 +20,7 @@ int main() {
         printf("ID: ");
         scanf("%d", &students[i].id);
         printf("Ten: ");
-        scanf(" %[^\n]", students[i].name);  // Đọc chuỗi có khoảng trắng
+        scanf(" %[^\n]", students[i].name);
         printf("Tuoi: ");
         scanf("%d", &students[i].age);
     }

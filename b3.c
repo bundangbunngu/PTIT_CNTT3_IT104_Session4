@@ -1,44 +1,7 @@
 #include <stdio.h>
 
-// Hàm đổi chỗ 2 số nguyên
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-// Hàm sắp xếp mảng theo thứ tự tăng dần (Bubble Sort)
-void bubbleSort(int arr[], int n) {
-    for (int i = 0; i < n-1; i++) {
-        for (int j = 0; j < n-1-i; j++) {
-            if (arr[j] > arr[j+1]) {
-                swap(&arr[j], &arr[j+1]);
-            }
-        }
-    }
-}
-
-// Hàm tìm kiếm nhị phân
-int binarySearch(int arr[], int n, int target) {
-    int left = 0, right = n - 1;
-
-    while (left <= right) {
-        int mid = (left + right) / 2;
-
-        if (arr[mid] == target) {
-            return 1; // Tìm thấy phần tử
-        } else if (arr[mid] < target) {
-            left = mid + 1; // Tìm bên phải
-        } else {
-            right = mid - 1; // Tìm bên trái
-        }
-    }
-
-    return 0; // Không tìm thấy
-}
-
 int main() {
-    int n;
+    int n, value;
 
     // Bước 1: Nhập số lượng phần tử
     printf("Nhap so luong phan tu cua mang: ");
@@ -46,36 +9,36 @@ int main() {
 
     int arr[n];
 
-    // Bước 2: Nhập các phần tử của mảng
+    // Bước 2: Nhập từng phần tử của mảng
     printf("Nhap cac phan tu:\n");
     for (int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
 
-    // Bước 3: Sắp xếp mảng theo thứ tự tăng dần
-    bubbleSort(arr, n);
-
-    // Bước 4: In mảng sau khi sắp xếp
-    printf("Mang sau khi sap xep: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-
-    // Bước 5: Nhập giá trị cần tìm
-    int x;
+    // Bước 3: Nhập giá trị cần tìm
     printf("Nhap gia tri can tim: ");
-    scanf("%d", &x);
+    scanf("%d", &value);
 
-    // Bước 6: Tìm kiếm bằng thuật toán nhị phân
-    int found = binarySearch(arr, n, x);
-
-    // Bước 7: In kết quả tìm kiếm
-    if (found) {
-        printf("Phan tu co trong mang\n");
-    } else {
-        printf("Phan tu khong co trong mang\n");
+    // Bước 4: Tìm và in ra các chỉ số của phần tử có giá trị bằng value
+    int found = 0;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == value) {
+            if (found == 0) {
+                printf("Vi tri: ");
+            }
+            printf("%d", i);
+            found = 1;
+            if (i < n - 1) {
+                printf(", ");
+            }
+        }
     }
 
+    // Bước 5: Nếu không tìm thấy phần tử
+    if (!found) {
+        printf("Phan tu khong co trong mang");
+    }
+
+    printf("\n");
     return 0;
 }
